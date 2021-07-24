@@ -23,7 +23,8 @@ import { XScrollBar } from "@xpf0000/js-scrollbar";
 XScrollBar(document.documentElement, {
 xy: 'xy', // x | y | xy
 offsetX: 30, // 横向滚动条左右间距 数字 | 带单位的字符串 ('10%' | '5rem')
-offsetY: 50  // 纵向滚动条上下间距 数字 | 带单位的字符串 ('10%' | '5rem')
+offsetY: 50,  // 纵向滚动条上下间距 数字 | 带单位的字符串 ('10%' | '5rem')
+className: '', // 自定义类名 方便对单个滚动条更改样式
 })
 ```
 
@@ -34,3 +35,75 @@ Vue.use(ScrollBar)
 <div v-scrollbar="{ xy: 'xy', offsetY: 100, offsetX: 50 }">
 </div>
 ```
+
+## 样式
+
+参照scrollbar.css修改全局样式 或者使用className修改单个滚动条的样式
+
+```css
+.x-scroll-bar-x {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  height: 10px;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  background: rgba(50, 50, 50, 0.2);
+}
+
+.x-scroll-bar-x:hover {
+  opacity: 1.0;
+}
+
+.x-scroll-bar-x .bar-plant {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  height: 6px;
+  width: 150px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: rgba(10, 10, 10, 0.5);
+}
+
+.x-scroll-bar-y {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  height: 100%;
+  width: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: rgba(150, 150, 150, 0.3);
+}
+
+.x-scroll-bar-y:hover {
+  opacity: 1.0;
+}
+
+.x-scroll-bar-y .bar-plant {
+  border-radius: 5px;
+  overflow: hidden;
+  position: absolute;
+  left: 2px;
+  top: 0;
+  width: 6px;
+  height: 150px;
+  background: rgba(10, 10, 10, 0.5);
+}
+
+.x-scroll-bar-x.x-scroll-dragging, .x-scroll-bar-y.x-scroll-dragging {
+  opacity: 1;
+}
+
+/* 透明度变化 */
+.x-scroll-bar-x {
+  opacity: 1.0;
+}
+.x-scroll-bar-y {
+  opacity: 1.0;
+}
+/* 透明度变化 */
+```
+

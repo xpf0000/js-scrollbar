@@ -32,7 +32,11 @@ export default {
     }
   },
   created() {
-    XScrollBar(document.documentElement, {offsetX: 30, offsetY: 50})
+    XScrollBar(document.documentElement, {
+      offsetX: 30,
+      offsetY: 50,
+      className: 'userClassName'
+    })
   }
 }
 </script>

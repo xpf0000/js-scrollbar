@@ -1,6 +1,6 @@
 import './scrollbar.css'
 
-export function XScrollBar(barEl, { xy = 'xy', offsetX = 0, offsetY = 0 }) {
+export function XScrollBar(barEl, { xy = 'xy', offsetX = 0, offsetY = 0, className = '' }) {
   const type = xy
   const fixed = barEl === document.documentElement || barEl === document.body
   const position = getComputedStyle(barEl).position
@@ -14,7 +14,7 @@ export function XScrollBar(barEl, { xy = 'xy', offsetX = 0, offsetY = 0 }) {
   const w = (barEl.clientWidth / barEl.scrollWidth) * 100.0
   const xbar = document.createElement('div')
   const xbarPlant = document.createElement('div')
-  xbar.className = 'x-scroll-bar-x'
+  xbar.className = `x-scroll-bar-x ${className}`
   xbar.style.left = offsetX
   xbar.style.width = `calc(100% - ${offsetX} - ${offsetX})`
   xbarPlant.className = 'bar-plant'
@@ -31,7 +31,7 @@ export function XScrollBar(barEl, { xy = 'xy', offsetX = 0, offsetY = 0 }) {
   const h = (barEl.clientHeight / barEl.scrollHeight) * 100.0
   const ybar = document.createElement('div')
   const ybarPlant = document.createElement('div')
-  ybar.className = 'x-scroll-bar-y'
+  ybar.className = `x-scroll-bar-y ${className}`
   ybar.style.top = offsetY
   ybar.style.height = `calc(100% - ${offsetY} - ${offsetY})`
   ybarPlant.className = 'bar-plant'
