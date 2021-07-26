@@ -16,8 +16,8 @@
 .x-scroll-bar-x .bar-plant {
   position: absolute;
   left: 0;
-  top: 2px;
-  height: 6px;
+  top: 20%;
+  height: 60%;
   width: 150px;
   border-radius: 5px;
   overflow: hidden;
@@ -43,9 +43,9 @@
   border-radius: 5px;
   overflow: hidden;
   position: absolute;
-  left: 2px;
+  left: 20%;
   top: 0;
-  width: 6px;
+  width: 60%;
   height: 150px;
   background: rgba(10, 10, 10, 0.5);
 }

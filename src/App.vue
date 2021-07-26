@@ -1,5 +1,5 @@
 <template>
-  <div id="app" @click="show = !show">
+  <div id="app">
     <input v-model="height">
     <div class="a" v-if="show" v-scrollbar="{ xy: 'xy', offsetY: 100 }">
       <div class="b" :style="'height:'+height+'px'">
@@ -82,5 +82,12 @@ export default {
         background: #308c59;
       }
     }
+  }
+
+  .x-scroll-bar-x {
+    height: 50px;
+  }
+  .x-scroll-bar-y {
+    width: 50px;
   }
 </style>

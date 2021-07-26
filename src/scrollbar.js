@@ -105,8 +105,6 @@ export function XScrollBar(barEl, { xy = 'xy',
     XScrollBar = JSON.parse(JSON.stringify(barEl.XScrollBar))
     document.addEventListener('mousemove', mouseMove)
     document.addEventListener('mouseup', mouseUp)
-    document.addEventListener('touchmove', mouseMove)
-    document.addEventListener('touchup', mouseUp)
   }
 
   const mouseMove = (me) => {
@@ -126,6 +124,16 @@ export function XScrollBar(barEl, { xy = 'xy',
       barEl.scrollTop = st
     }
   }
+
+  const mouseUp = () => {
+    document.removeEventListener('mousemove', mouseMove)
+    document.removeEventListener('mouseup', mouseUp)
+    xbar.classList.remove('x-scroll-dragging')
+    ybar.classList.remove('x-scroll-dragging')
+  }
+
+  xbarPlant.addEventListener('mousedown', mouseDown)
+  ybarPlant.addEventListener('mousedown', mouseDown)
 
   const doXScroll = (left, scrollLeft) => {
     const l = parseFloat(xbarPlant.style.left || 0)
@@ -178,7 +186,6 @@ export function XScrollBar(barEl, { xy = 'xy',
   }
 
   const barMouseDown = (e) => {
-    console.log('barMouseDown: ', e)
     if (e.target === xbar) {
       const x = e.offsetX
       let p = x / barEl.XScrollBar.barWidth * 100
@@ -199,23 +206,7 @@ export function XScrollBar(barEl, { xy = 'xy',
   }
 
   xbar.addEventListener('mousedown', barMouseDown)
-  xbar.addEventListener('touchdown', barMouseDown)
   ybar.addEventListener('mousedown', barMouseDown)
-  ybar.addEventListener('touchdown', barMouseDown)
-
-  const mouseUp = () => {
-    document.removeEventListener('mousemove', mouseMove)
-    document.removeEventListener('mouseup', mouseUp)
-    document.removeEventListener('touchmove', mouseMove)
-    document.removeEventListener('touchup', mouseUp)
-    xbar.classList.remove('x-scroll-dragging')
-    ybar.classList.remove('x-scroll-dragging')
-  }
-
-  xbarPlant.addEventListener('mousedown', mouseDown)
-  xbarPlant.addEventListener('touchdown', mouseDown)
-  ybarPlant.addEventListener('mousedown', mouseDown)
-  ybarPlant.addEventListener('touchdown', mouseDown)
 
   xbar.style.display = 'none'
   ybar.style.display = 'none'
@@ -302,8 +293,6 @@ export function XScrollBar(barEl, { xy = 'xy',
     document.removeEventListener('mousemove', setHideWhenNoMove)
     document.removeEventListener('mousemove', mouseMove)
     document.removeEventListener('mouseup', mouseUp)
-    document.removeEventListener('touchmove', mouseMove)
-    document.removeEventListener('touchup', mouseUp)
     xbar && xbar.remove()
     ybar && ybar.remove()
     barEl && delete barEl.XScrollBar
