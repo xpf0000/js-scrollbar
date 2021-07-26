@@ -68,8 +68,6 @@ export function XScrollBar(barEl, { xy = 'xy',
   xbar.style.left = barEl.XScrollBar.offsetX
   ybar.style.top = barEl.XScrollBar.offsetY
 
-  console.log('barEl.XScrollBar: ', barEl.XScrollBar)
-
   const onScroll = (e) => {
     const top = (barEl.scrollTop / barEl.scrollHeight) * 100.0
     ybarPlant.style.top = `${top}%`
@@ -186,7 +184,6 @@ export function XScrollBar(barEl, { xy = 'xy',
   }
 
   const barMouseDown = (e) => {
-    console.log('barEl.XScrollBar: ', barEl.XScrollBar)
     if (e.target === xbar) {
       const x = e.offsetX
       let p = x / barEl.XScrollBar.barWidth * 100
