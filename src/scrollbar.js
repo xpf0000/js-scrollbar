@@ -186,6 +186,7 @@ export function XScrollBar(barEl, { xy = 'xy',
   }
 
   const barMouseDown = (e) => {
+    console.log('barEl.XScrollBar: ', barEl.XScrollBar)
     if (e.target === xbar) {
       const x = e.offsetX
       let p = x / barEl.XScrollBar.barWidth * 100
@@ -211,19 +212,27 @@ export function XScrollBar(barEl, { xy = 'xy',
   xbar.style.display = 'none'
   ybar.style.display = 'none'
 
-  if (type.indexOf('x') >= 0 && barEl.scrollWidth > barEl.clientWidth) {
-    xbar.style.display = 'block'
-  }
+  const checkShow = () => {
+    if (type.indexOf('x') >= 0 && barEl.scrollWidth > barEl.clientWidth) {
+      xbar.style.display = 'block'
+    } else {
+      xbar.style.display = 'none'
+    }
 
-  if (type.indexOf('y') >= 0 && barEl.scrollHeight > barEl.clientHeight) {
-    ybar.style.display = 'block'
+    if (type.indexOf('y') >= 0 && barEl.scrollHeight > barEl.clientHeight) {
+      ybar.style.display = 'block'
+    } else {
+      ybar.style.display = 'none'
+    }
   }
-
+  checkShow()
   const reFreshBar = () => {
     if (!barEl.parentNode) {
       destroy()
       return
     }
+    checkShow()
+
     const XScrollBar = barEl.XScrollBar
     const scrollHeight = barEl.scrollHeight
     const scrollWidth = barEl.scrollWidth
@@ -239,6 +248,7 @@ export function XScrollBar(barEl, { xy = 'xy',
       XScrollBar.scrollWidth = scrollWidth
       XScrollBar.clientHeight = clientHeight
       XScrollBar.clientWidth = clientWidth
+
       XScrollBar.barHeight = ybar.getBoundingClientRect().height
       XScrollBar.barWidth = xbar.getBoundingClientRect().width
 

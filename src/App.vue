@@ -19,7 +19,7 @@ export default {
   components:{},
   data () {
     return {
-      height: 2000,
+      height: 200,
       show: true,
       a: 0,
       presetLine: [],
@@ -54,7 +54,7 @@ export default {
   }
   .a {
     position: relative;
-    width: 80%;
+    width: 800px;
     height: 80%;
     background: #accdef;
     overflow: auto;
@@ -64,7 +64,6 @@ export default {
 
     .b {
       width: 80%;
-      height: 2000px;
       background: #fd9b35;
       display: flex;
       align-items: center;
