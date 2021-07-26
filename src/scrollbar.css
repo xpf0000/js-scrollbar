@@ -62,5 +62,6 @@
 .x-scroll-bar-x, .x-scroll-bar-y {
   opacity: 1.0;
   transition: opacity 0.5s;
+  z-index: 2000;
 }
 /* 透明度变化 */
