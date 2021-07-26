@@ -9,10 +9,6 @@
   background: rgba(50, 50, 50, 0.2);
 }
 
-.x-scroll-bar-x:hover {
-  opacity: 1.0;
-}
-
 .x-scroll-bar-x .bar-plant {
   position: absolute;
   left: 0;
@@ -35,10 +31,6 @@
   background: rgba(150, 150, 150, 0.3);
 }
 
-.x-scroll-bar-y:hover {
-  opacity: 1.0;
-}
-
 .x-scroll-bar-y .bar-plant {
   border-radius: 5px;
   overflow: hidden;
@@ -50,6 +42,10 @@
   background: rgba(10, 10, 10, 0.5);
 }
 
+.x-scroll-bar-x:hover, .x-scroll-bar-y:hover {
+  opacity: 1.0;
+}
+
 .x-scroll-bar-x.x-scroll-dragging, .x-scroll-bar-y.x-scroll-dragging {
   opacity: 1;
 }
@@ -58,10 +54,8 @@
   opacity: 0;
 }
 
-/* 透明度变化 */
 .x-scroll-bar-x, .x-scroll-bar-y {
   opacity: 1.0;
   transition: opacity 0.5s;
   z-index: 2000;
 }
-/* 透明度变化 */

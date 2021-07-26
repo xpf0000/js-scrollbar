@@ -54,15 +54,11 @@ Vue.use(ScrollBar)
   background: rgba(50, 50, 50, 0.2);
 }
 
-.x-scroll-bar-x:hover {
-  opacity: 1.0;
-}
-
 .x-scroll-bar-x .bar-plant {
   position: absolute;
   left: 0;
-  top: 2px;
-  height: 6px;
+  top: 20%;
+  height: 60%;
   width: 150px;
   border-radius: 5px;
   overflow: hidden;
@@ -80,32 +76,33 @@ Vue.use(ScrollBar)
   background: rgba(150, 150, 150, 0.3);
 }
 
-.x-scroll-bar-y:hover {
-  opacity: 1.0;
-}
-
 .x-scroll-bar-y .bar-plant {
   border-radius: 5px;
   overflow: hidden;
   position: absolute;
-  left: 2px;
+  left: 20%;
   top: 0;
-  width: 6px;
+  width: 60%;
   height: 150px;
   background: rgba(10, 10, 10, 0.5);
+}
+
+.x-scroll-bar-x:hover, .x-scroll-bar-y:hover {
+  opacity: 1.0;
 }
 
 .x-scroll-bar-x.x-scroll-dragging, .x-scroll-bar-y.x-scroll-dragging {
   opacity: 1;
 }
 
-/* 透明度变化 */
-.x-scroll-bar-x {
-  opacity: 1.0;
+.x-scroll-bar-x.x-scroll-hide, .x-scroll-bar-y.x-scroll-hide {
+  opacity: 0;
 }
-.x-scroll-bar-y {
+
+.x-scroll-bar-x, .x-scroll-bar-y {
   opacity: 1.0;
+  transition: opacity 0.5s;
+  z-index: 2000;
 }
-/* 透明度变化 */
 ```
 
