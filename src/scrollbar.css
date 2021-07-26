@@ -54,11 +54,13 @@
   opacity: 1;
 }
 
-/* 透明度变化 */
-.x-scroll-bar-x {
-  opacity: 1.0;
+.x-scroll-bar-x.x-scroll-hide, .x-scroll-bar-y.x-scroll-hide {
+  opacity: 0;
 }
-.x-scroll-bar-y {
+
+/* 透明度变化 */
+.x-scroll-bar-x, .x-scroll-bar-y {
   opacity: 1.0;
+  transition: opacity 0.5s;
 }
 /* 透明度变化 */

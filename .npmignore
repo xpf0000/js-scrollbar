@@ -4,3 +4,12 @@ node_modules/
 .idea/
 npm-debug.log
 yarn-error.log
+/.babelrc
+/.editorconfig
+/.gitignore
+/.npmignore
+/index.html
+/package-lock.json
+/webpack.config.js
+/src/main.js
+/src/App.vue

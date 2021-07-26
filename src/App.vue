@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" @click="show = !show">
     <input v-model="height">
-    <div class="a" v-scrollbar="{ xy: 'xy', offsetY: 100 }">
+    <div class="a" v-if="show" v-scrollbar="{ xy: 'xy', offsetY: 100 }">
       <div class="b" :style="'height:'+height+'px'">
         <div class="c" @click="a += 1">
           {{ a }}
@@ -20,7 +20,7 @@ export default {
   data () {
     return {
       height: 2000,
-      show: false,
+      show: true,
       a: 0,
       presetLine: [],
       visible: true

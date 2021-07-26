@@ -1,6 +1,12 @@
 import './scrollbar.css'
 
-export function XScrollBar(barEl, { xy = 'xy', offsetX = 0, offsetY = 0, className = '' }) {
+export function XScrollBar(barEl, { xy = 'xy',
+  offsetX = 0,
+  offsetY = 0,
+  className = '',
+  autoHide = true,
+  autoHideDelay = 5000
+}) {
   const type = xy
   const fixed = barEl === document.documentElement || barEl === document.body
   const position = getComputedStyle(barEl).position
@@ -127,6 +133,9 @@ export function XScrollBar(barEl, { xy = 'xy', offsetX = 0, offsetY = 0, classNa
     const sl = barEl.scrollLeft
     const stepScrollLeft = (scrollLeft - sl) / 14.0
     function scroll () {
+      if (!barEl.parentNode) {
+        return
+      }
       let l = parseFloat(xbarPlant.style.left)
       l = stepLeft < 0 ? Math.max(l + stepLeft, left) : Math.min(l + stepLeft, left)
       xbarPlant.style.left = `${l}%`
@@ -149,13 +158,15 @@ export function XScrollBar(barEl, { xy = 'xy', offsetX = 0, offsetY = 0, classNa
     const st = barEl.scrollTop
     const stepScrollTop = (scrollTop - st) / 14.0
     function scroll () {
+      if (!barEl.parentNode) {
+        return
+      }
       let t = parseFloat(ybarPlant.style.top)
       t = stepTop < 0 ? Math.max(t + stepTop, top) : Math.min(t + stepTop, top)
       ybarPlant.style.top = `${t}%`
       let st = barEl.scrollTop
       st = stepScrollTop < 0 ? Math.max(st + stepScrollTop, scrollTop) : Math.min(st + stepScrollTop, scrollTop)
       barEl.scrollTop = st
-      console.log('barEl.scrollTop: ', barEl.scrollTop)
       if (!fixed) {
         ybar.style.top = `calc(${barEl.scrollTop}px + ${barEl.XScrollBar.offsetY})`
       }
@@ -218,6 +229,10 @@ export function XScrollBar(barEl, { xy = 'xy', offsetX = 0, offsetY = 0, classNa
   }
 
   const reFreshBar = () => {
+    if (!barEl.parentNode) {
+      destroy()
+      return
+    }
     const XScrollBar = barEl.XScrollBar
     const scrollHeight = barEl.scrollHeight
     const scrollWidth = barEl.scrollWidth
@@ -260,6 +275,44 @@ export function XScrollBar(barEl, { xy = 'xy', offsetX = 0, offsetY = 0, classNa
     childList: true
   }
   observer.observe(barEl, config)
+
+  let hideTimer
+  const setHideWhenNoMove = () => {
+    hideTimer && clearTimeout(hideTimer)
+    if (xbar.classList.contains('x-scroll-hide')) {
+      xbar.classList.remove('x-scroll-hide')
+      ybar.classList.remove('x-scroll-hide')
+    }
+    hideTimer = setTimeout(() => {
+      xbar.classList.add('x-scroll-hide')
+      ybar.classList.add('x-scroll-hide')
+    }, autoHideDelay)
+  }
+  if (autoHide) {
+    document.addEventListener('mousemove', setHideWhenNoMove)
+    document.addEventListener('mousewheel', setHideWhenNoMove)
+    document.addEventListener('DOMMouseScroll', setHideWhenNoMove)
+    setHideWhenNoMove()
+  }
+
+  const destroy = () => {
+    hideTimer && clearTimeout(hideTimer)
+    document.removeEventListener('mousewheel', setHideWhenNoMove)
+    document.removeEventListener('DOMMouseScroll', setHideWhenNoMove)
+    document.removeEventListener('mousemove', setHideWhenNoMove)
+    document.removeEventListener('mousemove', mouseMove)
+    document.removeEventListener('mouseup', mouseUp)
+    document.removeEventListener('touchmove', mouseMove)
+    document.removeEventListener('touchup', mouseUp)
+    xbar && xbar.remove()
+    ybar && ybar.remove()
+    barEl && delete barEl.XScrollBar
+  }
+
+  return {
+    update: reFreshBar,
+    destroy
+  }
 }
 
 export default {
