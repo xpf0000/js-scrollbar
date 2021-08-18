@@ -1,7 +1,7 @@
 {
   "name": "@xpf0000/js-scrollbar",
   "description": "javascript scrollbar",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "xu pengfei",
   "license": "MIT",
   "main": "src/index.js",

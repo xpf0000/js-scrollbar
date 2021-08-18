@@ -294,6 +294,8 @@ export function XScrollBar(barEl, { xy = 'xy',
   }
 
   const destroy = () => {
+    resizeObserver && resizeObserver.unobserve && resizeObserver.unobserve()
+    observer && observer.disconnect && observer.disconnect()
     hideTimer && clearTimeout(hideTimer)
     document.removeEventListener('mousewheel', setHideWhenNoMove)
     document.removeEventListener('DOMMouseScroll', setHideWhenNoMove)
