@@ -25,11 +25,8 @@ export function XScrollBar(barEl, { xy = 'xy',
   autoHideDelay = 5000
 }) {
   const type = xy
-  const fixed = barEl === document.documentElement || barEl === document.body
   const position = getComputedStyle(barEl).position
-  if (position !== 'relative' && position !== 'absolute' && position !== 'fixed') {
-    console.warn('vue scrollbar need directive el position is relative | absolute | fixed')
-  }
+  const fixed = barEl === document.documentElement || barEl === document.body || position === 'static'
 
   offsetX = !isNaN(Number(offsetX)) ? `${offsetX}px` : offsetX
   offsetY = !isNaN(Number(offsetY)) ? `${offsetY}px` : offsetY

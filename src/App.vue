@@ -4,7 +4,9 @@
     <div class="a" v-if="show" v-scrollbar="{ xy: 'xy', offsetY: 100 }">
       <div class="b" :style="'height:'+height+'px'">
         <div class="c" @click="a += 1">
-          {{ a }}
+          <div v-for="i in 1000" class="cccc">
+            <img :src="i % 2 === 0 ? img0 : img1" />
+          </div>
         </div>
       </div>
     </div>
@@ -19,6 +21,8 @@ export default {
   components:{},
   data () {
     return {
+      img0: require('./256x256.png'),
+      img1: require('./screen1.gif'),
       height: 200,
       show: true,
       a: 0,
@@ -73,12 +77,26 @@ export default {
 
       .c {
         display: flex;
-        align-items: center;
-        justify-content: center;
         font-size: 50px;
         width: 100%;
         height: 100%;
         background: #308c59;
+        flex-wrap: wrap;
+
+        .cccc {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 300px;
+          height: 300px;
+          flex-shrink: 0;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
       }
     }
   }
