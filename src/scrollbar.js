@@ -1,5 +1,22 @@
 import './scrollbar.css'
 
+const checkIsXScrollBar = (target) => {
+  const is = (arr) => {
+    arr = [...arr]
+    if (arr.length === 0)return false
+    return arr.includes('x-scroll-bar-y') || arr.includes('x-scroll-bar-x')
+  }
+  let classList = target.classList
+  if (is(classList)) {
+    return true
+  }
+  classList = target.parentNode?.classList ?? []
+  if (is(classList)) {
+    return true
+  }
+  return false
+}
+
 export function XScrollBar(barEl, { xy = 'xy',
   offsetX = 0,
   offsetY = 0,
@@ -265,6 +282,10 @@ export function XScrollBar(barEl, { xy = 'xy',
   resizeObserver.observe(barEl)
 
   const observer = new MutationObserver((mutations, observer) => {
+    const target = mutations[0].target
+    if (checkIsXScrollBar(target)) {
+      return
+    }
     reFreshBar()
   })
   const config = {
