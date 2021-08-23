@@ -1,11 +1,11 @@
 {
   "name": "@xpf0000/js-scrollbar",
   "description": "javascript scrollbar",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "author": "xu pengfei",
   "license": "MIT",
-  "main": "src/index.js",
-  "jsnext:main": "src/index.js",
+  "main": "dist/index.js",
+  "jsnext:main": "dist/index.js",
   "private": false,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
@@ -24,19 +24,18 @@
     "component",
     "scrollbar"
   ],
-  "dependencies": {
-    "vue": "^2.5.11"
-  },
+  "dependencies": {},
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
   ],
   "devDependencies": {
+    "vue": "^2.5.11",
     "@babel/core": "^7.15.0",
-    "@babel/plugin-proposal-optional-chaining": "^7.14.5",
     "@babel/preset-env": "^7.15.0",
     "babel-loader": "^8.2.2",
+    "core-js": "^3.16.2",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
